@@ -1,5 +1,9 @@
 # The Birt Tools project
 
+## Summary
+
+Birt Tools provides integration between Hibernate and Birt report generation.
+
 ## Install
 
 _Birt Tools_ is part of [JBoss Tools](http://jboss.org/tools) from
