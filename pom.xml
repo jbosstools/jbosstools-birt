@@ -18,13 +18,5 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>features</module>
 		<module>site</module>
 	</modules>
-	<profiles>
-		<profile>
-			<id>bootstrap</id>
-			<modules>
-				<module>../jbosstools-hibernate</module>
-			</modules>
-		</profile>
-	</profiles>
 </project>
 	
