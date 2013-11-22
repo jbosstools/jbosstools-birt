@@ -62,7 +62,7 @@
      
         
         <releaseinfo>
-            Version: 3.3.0.GA
+            Version: &project.version;
         </releaseinfo>
   
 
@@ -78,7 +78,7 @@
  <toc/> 
     
     &introduction;
-    &jbossinstall;
+<!--    &jbossinstall; -->
     &tasks;
     &framework;
     &links;
