@@ -61,9 +61,9 @@
         </copyright>
      
         
-        <releaseinfo>
-            Version: 3.3.0.GA
-        </releaseinfo>
+       <releaseinfo>
+            Version: &project.version;
+       </releaseinfo>
   
 
 <!--<abstract>
