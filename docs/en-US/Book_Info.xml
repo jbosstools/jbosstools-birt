@@ -4,10 +4,8 @@
 <bookinfo id="book-JBoss_BIRT_Integration_User_Guide-JBoss_Business_Intelligence_and_Reporting_Tools_integration_User_Guide">
 <title>JBoss Business Intelligence and Reporting Tools Integration User Guide</title>
 <subtitle>Provides information about the use of the Business Intelligence and Reporting Tools (BIRT) plug-in as part of the JBoss Developer Studio.</subtitle>
-<productname>JBoss Developer Studio</productname>
-<productnumber>5.0</productnumber>
-<edition>5.0.0</edition>
-<pubsnumber>1</pubsnumber>
+<productname>Red Hat JBoss Developer Studio</productname>
+<productnumber>7.1</productnumber>
 <abstract>
 <para>
 This guide provides a reference for use of the Business Intelligence and Reporting Tools (BIRT) plug-in with the JBoss Developer Studio. The BIRT plug-in is an open source reporting system for web applications.
