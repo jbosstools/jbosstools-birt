@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.birt.integration.wtp.ui.internal.resource.BirtWTPMessages;
 import org.eclipse.birt.integration.wtp.ui.internal.util.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -94,67 +92,68 @@ public class BirtPostInstallListener implements IFacetedProjectListener {
 			}
 		}
 		if (isJBossBirtProject || isBirtProject) {
-			String configIniString = configFolder
-					+ "/WEB-INF/platform/configuration/config.ini"; //$NON-NLS-1$
+			if (configFolder == null) {
+				return;
+			}
+			String configIniString = configFolder + "/WEB-INF/platform/configuration/config.ini"; //$NON-NLS-1$
 			IProject project = facetedProject.getProject();
 			IResource configFile = project
 					.findMember(new Path(configIniString));
-			if (!configFile.exists()) {
-				String message = Messages.BirtPostInstallListener_The_config_ini_file_doesnt_exist;
-				Logger.log(Logger.ERROR, message);
-				return;
-			}
-			Properties properties = new Properties();
-			InputStream inputStream = null;
-			ByteArrayOutputStream outputStream = null;
-			try {
-				URL url = configFile.getLocation().toFile().toURL();
-				inputStream = url.openStream();
-				properties.load(inputStream);
-				String bootDelegation = "org.osgi.framework.bootdelegation"; //$NON-NLS-1$
-				String loader = "osgi.parentClassloader"; //$NON-NLS-1$
-				properties
-						.put(
-								bootDelegation,
-								"org.hibernate,org.hibernate.type,org.hibernate.metadata,org.hibernate.ejb, javax.persistence"); //$NON-NLS-1$
-				properties.put(loader, "fwk"); //$NON-NLS-1$
-				// FIXME
-				// String compatibility = "osgi.compatibility.bootdelegation";
-				// properties.put(compatibility,"false");
-				IFile file = (IFile) configFile;
-				outputStream = new ByteArrayOutputStream();
-				properties.store(outputStream, null);
-				file.setContents(new ByteArrayInputStream(outputStream
+			if (configFile != null && configFile.exists()) {
+				Properties properties = new Properties();
+				InputStream inputStream = null;
+				ByteArrayOutputStream outputStream = null;
+				try {
+					URL url = configFile.getLocation().toFile().toURI().toURL();
+					inputStream = url.openStream();
+					properties.load(inputStream);
+					String bootDelegation = "org.osgi.framework.bootdelegation"; //$NON-NLS-1$
+					String loader = "osgi.parentClassloader"; //$NON-NLS-1$
+					properties.put(bootDelegation, "org.hibernate,org.hibernate.type,org.hibernate.metadata,org.hibernate.ejb, javax.persistence"); //$NON-NLS-1$
+					properties.put(loader, "fwk"); //$NON-NLS-1$
+					// FIXME
+					// String compatibility = "osgi.compatibility.bootdelegation";
+					// properties.put(compatibility,"false");
+					IFile file = (IFile) configFile;
+					outputStream = new ByteArrayOutputStream();
+					properties.store(outputStream, null);
+					file.setContents(new ByteArrayInputStream(outputStream
 						.toByteArray()), true, true, null);
 
-			} catch (Exception e) {
-				Logger.log(Logger.ERROR, e.getLocalizedMessage());
-			} finally {
-				if (inputStream != null) {
-					try {
-						inputStream.close();
-					} catch (IOException e) {
-						// ignore
+				} catch (Exception e) {
+					Logger.log(Logger.ERROR, e.getLocalizedMessage());
+				} finally {
+					if (inputStream != null) {
+						try {
+							inputStream.close();
+						} catch (IOException e) {
+							// ignore
+						}
 					}
-				}
-				if (outputStream != null) {
-					try {
-						outputStream.close();
-					} catch (IOException e) {
-						// ignore
+					if (outputStream != null) {
+						try {
+							outputStream.close();
+						} catch (IOException e) {
+							// ignore
+						}
 					}
 				}
 			}
-
 		}
 		if (isBirtProject && !isJBossBirtProject) {
-			String platformFolder = configFolder + "/WEB-INF/platform/plugins"; //$NON-NLS-1$
+			if (configFolder == null) {
+				return;
+			}
+			String platformFolder = configFolder + "/WEB-INF/lib"; //$NON-NLS-1$
 			IProject project = facetedProject.getProject();
 			IProgressMonitor monitor = new NullProgressMonitor();
 			BirtCoreActivator.copyPlugin(project, "org.jboss.tools.birt.oda", //$NON-NLS-1$
 					platformFolder, monitor);
 		}
 		if (isSeamProject && (isBirtProject || isJBossBirtProject)) {
+			if (configFolder == null) {
+				return;
+			}
 			IProject project = facetedProject.getProject();
 			String libFolder = configFolder + "/WEB-INF/lib"; //$NON-NLS-1$
 			IResource destResource = project.findMember(libFolder);
