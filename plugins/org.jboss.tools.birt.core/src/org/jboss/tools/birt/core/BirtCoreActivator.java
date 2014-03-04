@@ -85,7 +85,7 @@ public class BirtCoreActivator extends AbstractUIPlugin {
 
 	public static void copyPlugin(IProject project,String pluginId, String destination, IProgressMonitor monitor) {
 		IResource destResource = project.findMember(destination);
-		if (!destResource.exists()) {
+		if (destResource == null || !destResource.exists()) {
 			IStatus status = new Status(IStatus.WARNING,BirtCoreActivator.PLUGIN_ID,NLS.bind(Messages.BirtCoreActivator_The_folder_doesnt_exists, destination));
 			BirtCoreActivator.getDefault().getLog().log(status);
 			return;
