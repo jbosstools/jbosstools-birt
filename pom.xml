@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<parent>
 		<groupId>org.jboss.tools</groupId>
 		<artifactId>parent</artifactId>
-		<version>4.2.0.Alpha2-SNAPSHOT</version>
+		<version>4.2.0.Beta1-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>birt</artifactId>
@@ -27,10 +27,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<url>${jbosstools-base-site}</url>
 		</repository>
 		<repository>
-			<id>jbosstools-hierbnate</id>
+			<id>jbosstools-hibernate</id>
 			<layout>p2</layout>
 			<url>${jbosstools-hibernate-site}</url>
 		</repository>
+
+		<!-- to build against local target platform, uncomment this repository, then use 
+			mvn clean install -Djbosstools-target-site=file:///path/to/jbosstools-target-platforms/jbosstools/multiple/target/jbosstools-multiple.target.repo/
+		<repository>
+			<id>jbosstools-target-site</id>
+			<layout>p2</layout>
+			<url>${jbosstools-target-site}</url>
+		</repository>
+		-->
 	</repositories>
 </project>
 	
