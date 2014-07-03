@@ -38,6 +38,7 @@ import org.hibernate.console.KnownConfigurations;
 import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.ui.Activator;
 import org.jboss.tools.birt.oda.ui.Messages;
+import org.jboss.tools.hibernate.spi.ISessionFactory;
 
 /**
  * Helper class for Hibernate wizard and property page
@@ -209,7 +210,7 @@ public class HibernateSelectionPageHelper {
 		}
 		if (consoleConfiguration != null) {
 			try {
-				SessionFactory sessionFactory = consoleConfiguration
+				ISessionFactory sessionFactory = consoleConfiguration
 						.getSessionFactory();
 				if (sessionFactory == null) {
 					consoleConfiguration.build();

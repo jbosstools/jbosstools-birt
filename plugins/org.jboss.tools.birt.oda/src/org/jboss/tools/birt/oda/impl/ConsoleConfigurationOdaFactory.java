@@ -18,8 +18,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.console.ConsoleConfiguration;
 import org.hibernate.console.KnownConfigurations;
+import org.jboss.tools.birt.oda.Activator;
 import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.Messages;
+import org.jboss.tools.hibernate.spi.ISessionFactory;
 
 /**
  * 
@@ -51,12 +53,13 @@ public class ConsoleConfigurationOdaFactory extends AbstractOdaFactory {
 		}
         if (!isOpen()) {
         	try {
-				sessionFactory = consoleConfiguration.getSessionFactory();
-				if (sessionFactory == null) {
+				ISessionFactory isf = consoleConfiguration.getSessionFactory();
+				if (isf == null) {
 					consoleConfiguration.build();
 					consoleConfiguration.buildSessionFactory();
-					sessionFactory = consoleConfiguration.getSessionFactory();
+					isf = consoleConfiguration.getSessionFactory();
 				}
+				sessionFactory = Activator.getSessionFactory(isf);
 			} catch (HibernateException e) {
 				throw new OdaException(e.getLocalizedMessage());
 			}

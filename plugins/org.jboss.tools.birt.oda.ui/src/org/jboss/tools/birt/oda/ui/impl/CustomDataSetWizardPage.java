@@ -73,13 +73,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.console.ConsoleConfiguration;
 import org.hibernate.console.KnownConfigurations;
 import org.hibernate.console.QueryInputModel;
-import org.hibernate.eclipse.console.HibernateConsoleMessages;
 import org.hibernate.eclipse.console.QueryEditor;
 import org.hibernate.eclipse.console.utils.QLFormatHelper;
 import org.hibernate.eclipse.console.viewers.xpl.MTreeViewer;
@@ -96,6 +92,7 @@ import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.impl.HibernateDriver;
 import org.jboss.tools.birt.oda.ui.Activator;
 import org.jboss.tools.birt.oda.ui.Messages;
+import org.jboss.tools.hibernate.spi.ISessionFactory;
 
 /**
  * Hibernate data set designer page
@@ -369,8 +366,8 @@ public class CustomDataSetWizardPage extends DataSetWizardPage {
 	/* 
 	 * copied from the DynamicSQLPreviewView.generateSQL method 
 	 */
-	private String generateSQL(SessionFactory sessionFactory, String queryText) {
-		SessionFactoryImpl sfimpl = (SessionFactoryImpl) sessionFactory; // hack - to get to the actual queries..
+	private String generateSQL(ISessionFactory sessionFactory, String queryText) {
+		SessionFactoryImpl sfimpl = (SessionFactoryImpl) org.jboss.tools.birt.oda.Activator.getSessionFactory(sessionFactory);
 		StringBuffer str = new StringBuffer(256);
 		HQLQueryPlan plan = new HQLQueryPlan(queryText, false, Collections.EMPTY_MAP, sfimpl);
 
@@ -460,7 +457,7 @@ public class CustomDataSetWizardPage extends DataSetWizardPage {
 		viewer.setContentProvider(new KnownConfigurationsProvider());
 		ConsoleConfiguration configuration = getInternalConsoleConfiguration();
 		if (configuration != null) {
-			SessionFactory sessionFactory = configuration.getSessionFactory();
+			ISessionFactory sessionFactory = configuration.getSessionFactory();
 			if (sessionFactory == null) {
 				configuration.build();
 				configuration.buildSessionFactory();
