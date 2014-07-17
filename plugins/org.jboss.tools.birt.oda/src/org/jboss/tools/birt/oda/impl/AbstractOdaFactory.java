@@ -1,7 +1,5 @@
 package org.jboss.tools.birt.oda.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,10 +14,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.engine.query.HQLQueryPlan;
 import org.hibernate.impl.SessionFactoryImpl;
 import org.hibernate.type.Type;
-import org.jboss.tools.birt.oda.Activator;
 import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.Messages;
-import org.jboss.tools.hibernate.spi.ISessionFactory;
 
 public abstract class AbstractOdaFactory implements IOdaFactory {
 
