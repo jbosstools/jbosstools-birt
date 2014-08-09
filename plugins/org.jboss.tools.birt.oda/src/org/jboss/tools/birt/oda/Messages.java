@@ -1,7 +1,20 @@
+/*******************************************************************************
+ * Copyright (c) 2007-2014 Red Hat, Inc.
+ * Distributed under license by Red Hat, Inc. All rights reserved.
+ * This program is made available under the terms of the
+ * Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ *
+ ******************************************************************************/
 package org.jboss.tools.birt.oda;
 
 import org.eclipse.osgi.util.NLS;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.jboss.tools.birt.oda.messages"; //$NON-NLS-1$
 	public static String AbstractOdaFactory_The_type_is_not_valid;

@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Copyright (c) 2007-2014 Red Hat, Inc.
+ * Distributed under license by Red Hat, Inc. All rights reserved.
+ * This program is made available under the terms of the
+ * Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ *
+ ******************************************************************************/
 package org.jboss.tools.birt.core.internal.project.facet;
 
 import java.util.Iterator;
@@ -36,6 +44,11 @@ import org.eclipse.jst.j2ee.webapplication.WebApp;
 import org.eclipse.jst.j2ee.webapplication.WebapplicationFactory;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public class JBossBirtUtil implements IBirtUtil {
 
 	public void configureContextParam(Map map, IProject project,

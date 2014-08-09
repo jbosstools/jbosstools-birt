@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Copyright (c) 2007-2014 Red Hat, Inc.
+ * Distributed under license by Red Hat, Inc. All rights reserved.
+ * This program is made available under the terms of the
+ * Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ *
+ ******************************************************************************/
 package org.jboss.tools.birt.core.internal.project.facet;
 
 import java.io.ByteArrayInputStream;
@@ -47,6 +55,11 @@ import org.jboss.tools.birt.core.BirtCoreActivator;
 import org.jboss.tools.birt.core.Messages;
 import org.osgi.framework.Bundle;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public class BirtPostInstallListener implements IFacetedProjectListener {
 
 	private static final String JBossBirtCorePluginId = "org.jboss.tools.birt.core"; //$NON-NLS-1$
