@@ -92,7 +92,7 @@ import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.impl.HibernateDriver;
 import org.jboss.tools.birt.oda.ui.Activator;
 import org.jboss.tools.birt.oda.ui.Messages;
-import org.jboss.tools.hibernate.spi.ISessionFactory;
+import org.jboss.tools.hibernate.runtime.spi.ISessionFactory;
 
 /**
  * Hibernate data set designer page

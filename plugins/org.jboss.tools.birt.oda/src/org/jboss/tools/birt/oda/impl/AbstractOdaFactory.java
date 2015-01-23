@@ -27,7 +27,7 @@ import org.hibernate.type.Type;
 import org.jboss.tools.birt.oda.Activator;
 import org.jboss.tools.birt.oda.IOdaFactory;
 import org.jboss.tools.birt.oda.Messages;
-import org.jboss.tools.hibernate.spi.ISessionFactory;
+import org.jboss.tools.hibernate.runtime.spi.ISessionFactory;
 
 /**
  * 
